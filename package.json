@@ -1,0 +1,12 @@
+{
+  "name": "royale-tracker",
+  "description": "A small library to fetch player data and cards using proxy due to supercell's strict ip adress rules/policy",
+  "author": "Mohammed Abdullah",
+  "version": "1.0.4",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  }
+}
