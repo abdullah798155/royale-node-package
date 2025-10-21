@@ -109,8 +109,8 @@ import { NextResponse } from "next/server";
 import { fetchPlayerCards, fetchPlayerData } from "royale-tracker";
 
 export async function GET(req, { params }) {
-  const { params } = await context;
-  const tag = params.tag;
+  const resolvedParams = await params;
+  const tag = resolvedParams.tag;
   try {
       let {cards} = await fetchPlayerCards(tag,process.env.YOUR_API_TOKEN)
       let player = await fetchPlayerData(tag,process.env.YOUR_API_TOKEN)
@@ -120,7 +120,7 @@ export async function GET(req, { params }) {
           cards:cards,
       }
       return NextResponse.json( fullDetails );
-      
+
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: err.status || 500 });
   }
