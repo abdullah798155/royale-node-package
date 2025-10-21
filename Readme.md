@@ -27,13 +27,13 @@ npm install royale-tracker
 
 ## Getting your API token
 
-1. Create a Clash Royale developer key at the official site using the ip address from below stpe 2:  
+1. Create a Clash Royale developer key at the official site using the ip address from below step 2:  
    https://developer.clashroyale.com/#/
 
 2. Use the RoyaleAPI proxy rules to create a key using thier ip adress listed in documentation:  
    https://docs.royaleapi.com/proxy.html
 
-3. Copy your player tag from the Clash Royale app (the tag often starts with `#` — the library will clean it for you).
+3. Dont forget to copy your player tag from the Clash Royale app (the tag often starts with `#` — the library will clean it for you).
 
 ## Usage
 
@@ -46,7 +46,7 @@ const token = process.env.YOUR_API_TOKEN;
 
 try {
   const { cards } = await fetchPlayerCards(tag, token);
-  let player = await fetchPlayerData(tag,process.env.API_TOKEN)
+  let player = await fetchPlayerData(tag,token)
   console.log(cards);
   console.log(player)
 } catch (err) {
