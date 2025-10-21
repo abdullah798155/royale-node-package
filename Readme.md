@@ -104,16 +104,23 @@ A `index.d.ts` type declaration is included. If you import in a TS project, Type
 
 ## Example Next.js usage (API route)
 ```javascript
-// app/api/playercards/[tag]/route.js
+// Defined api route via @app/api/playercards/[tag]/route.js
 import { NextResponse } from "next/server";
-import { fetchPlayerCards } from "royale-tracker";
+import { fetchPlayerCards, fetchPlayerData } from "royale-tracker";
 
-export async function GET(req, context) {
+export async function GET(req, { params }) {
   const { params } = await context;
   const tag = params.tag;
   try {
-    const result = await fetchPlayerCards(tag, process.env.RP_API_TOKEN);
-    return NextResponse.json(result);
+      let {cards} = await fetchPlayerCards(tag,process.env.YOUR_API_TOKEN)
+      let player = await fetchPlayerData(tag,process.env.YOUR_API_TOKEN)
+
+      let fullDetails = {
+          profile:player,
+          cards:cards,
+      }
+      return NextResponse.json( fullDetails );
+      
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: err.status || 500 });
   }
