@@ -23,9 +23,9 @@ export async function fetchPlayerData(tag, apiToken) {
 
   const cleanTag = tag.toUpperCase().replace(/^#*/, "");
 
-  if (!/^[0289CGJLPQRUVY]+$/.test(cleanTag)) {
-    throw new Error("Invalid player tag format");
-  }
+  // if (!/^[0289CGJLPQRUVY]+$/.test(cleanTag)) {
+  //   throw new Error("Invalid player tag format");
+  // }
 
   const url = `${BASE}/players/%23${encodeURIComponent(cleanTag)}`;
   const resp = await fetch(url, {
@@ -38,8 +38,8 @@ export async function fetchPlayerData(tag, apiToken) {
   const body = await resp.json().catch(() => ({}));
 
   if (!resp.ok) {
-    const msg = body.message || `HTTP status ${resp.status}`;
-    throw new Error(msg);
+    if(resp.status===404) throw new Error("No player found")
+    else throw new Error(resp.status);
   }
 
   // Extract only the player details
@@ -75,9 +75,9 @@ export async function fetchPlayerCards(tag, apiToken) {
 
   const body = await resp.json().catch(() => ({}));
 
-  if (!resp.ok) {
-    const msg = body.message || `HTTP status ${resp.status}`;
-    throw new Error(msg);
+   if (!resp.ok) {
+    if(resp.status===404) throw new Error("No player found")
+    else throw new Error(resp.status);
   }
 
   const cards = (body.cards || []).map((c) => ({
