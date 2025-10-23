@@ -3,6 +3,11 @@
 A small Node library to fetch Clash Royale player data (cards and player stats).
 It normalizes card counts/levels and works through the RoyaleAPI proxy so you can avoid direct Supercell IP restrictions when using the official developer token.
 
+[![npm version](https://img.shields.io/npm/v/royale-tracker?color=blue)](https://www.npmjs.com/package/royale-tracker)
+![JavaScript](https://img.shields.io/badge/language-JavaScript-yellow)
+![TypeScript](https://img.shields.io/badge/types-TypeScript-blue)
+![Node.js](https://img.shields.io/badge/runtime-Node.js-green)
+
 ## Features
 
 - Fetches player data and card collection via RoyaleAPI proxy.
